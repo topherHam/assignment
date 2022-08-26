@@ -1,22 +1,22 @@
 import React, { useState } from "react"
-import { Navigate } from "react-router-dom"
 import { AuthContext } from "../../../../App"
+import { AuthForm } from "../../../../common/authForm"
+import { Message } from "../../../../common/message"
 import { makeLogin } from "./api"
 
 const Login = () => {
-    const [userName, setUsername] = useState()
-    const [password, setPassword] = useState()
+    const [message, setMessage] = useState()
+    const authContext = React.useContext(AuthContext);
 
-    const authContext =  React.useContext(AuthContext);
-
-    const handleChangeUsername = (e) => setUsername(e.target.value)
-    const handleChangePassword = (e) => setPassword(e.target.value)
-
-    const handleLogin = async ()=> {
-        const response = await makeLogin({userName, password}) 
-        if(response.status === 200){
-            authContext.onLogin(response.data.accessToken)
-            
+    const handleLogin = async (userName, password) => {
+        try {
+            const response = await makeLogin({ userName, password })
+            if (response.status === 200) {
+                authContext.onLogin(response.data.accessToken)
+                return
+            }
+        } catch (error) {
+            setMessage({text: error.response.data.message, type:'error'})
         }
     }
 
@@ -24,26 +24,11 @@ const Login = () => {
         <>
             <h2>Welcome</h2>
             <section>
-            <label htmlFor="username">
-                    Username
-                </label>
-                <input
-                    id="username"
-                    onChange={handleChangeUsername}
-                    value={userName}
-                />
-                <label htmlFor="password">
-                    Password
-                </label>
-                <input
-                    id="password"
-                    onChange={handleChangePassword}
-                    value={password}
-                    type="password"
-                />
-                <button onClick={handleLogin}>
-                    Login
-                </button>
+                <AuthForm 
+                    handleFormSubmit={handleLogin}
+                    labelButton="Login"
+                    />
+                {message !== null && <Message message={message} callback={()=>setMessage(null)}/>}
             </section>
         </>
     )
