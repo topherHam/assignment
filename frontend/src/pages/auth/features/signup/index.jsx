@@ -1,24 +1,25 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { AuthContext } from "../../../../App"
 import { AuthForm } from "../../../../common/authForm"
 import { Message } from "../../../../common/message"
 import { makeSignup } from "./api"
 
-const Signup = () => {
+const Signup = ({changeAuthOption}) => {
     const [message, setMessage] = useState()
-    const authContext = React.useContext(AuthContext);
     const navigate = useNavigate();
     
     const handleSignup = async (userName, password) => {
         try {
             const response = await makeSignup({ userName, password })
-            if (response.status === 200) {
-                authContext.onSignup(response.data.accessToken)
-                navigate('/home')
+            console.log(response.status)
+            if (response.status === 201) {
+                console.log(12)
+                changeAuthOption()
+               // navigate('/login')
                 return
             }
         } catch (error) {
+            console.log(error)
             setMessage({text: error.response.data.message, type:'error'})
         }
     }

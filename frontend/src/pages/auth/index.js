@@ -14,7 +14,7 @@ const Auth = () => {
 				<small onClick={()=>handleSwitch()}>
 				{option === 1 ? `Not an account  yet? Let's create a new one!` : 'Back to login'}
 				</small></a>
-			{option === 1 ? <Login/> : <SignUp/>}
+			{option === 1 ? <Login/> : <SignUp changeAuthOption={()=>handleSwitch()} />}
 		</>
 	)
 }

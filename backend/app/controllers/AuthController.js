@@ -12,7 +12,7 @@ AuthController.signup = async (req, res)=>{
     })
     try {
         const newUser = await user.save()
-        res.status(201).json({newUser})
+        res.status(201).json({userName:newUser.userName})
     } catch (error) {
         res.status(400).json({message:error.message})
     }
@@ -42,7 +42,7 @@ AuthController.login = (req, res) => {
         res.status(200).send({
           id: user._id,
           userName: user.userName,
-           expiresIn: 12000,
+          expiresIn: 12000,
           accessToken: token
         });
       });

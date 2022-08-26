@@ -14,7 +14,7 @@ const App = () => {
       <AuthProvider >
         <Routes>
           <Route index element={<Auth />} />
-          <Route path="login" element={<Auth />} />
+          <Route path="authtentication" element={<Auth />} />
           <Route
             path="home"
             element={

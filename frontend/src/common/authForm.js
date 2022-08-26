@@ -1,40 +1,48 @@
-import { useState } from "react"
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
 export const AuthForm = ({ handleFormSubmit, labelButton }) => {
-    const [userName, setUsername] = useState()
-    const [password, setPassword] = useState()
 
-    const handleChangeUsername = (e) => setUsername(e.target.value)
-    const handleChangePassword = (e) => setPassword(e.target.value)
+    const formik = useFormik({
+        initialValues: {
+            userName: '',
+            password: ''
+        },
+        validationSchema: Yup.object().shape({
+            userName: Yup.string().required(),
+            password: Yup.string().required(),
+        }),
+        onSubmit: () => {
+            handleFormSubmit(formik.values.userName, formik.values.password)
+        },
+    });
 
     return (
-        <form>
+        <form onSubmit={formik.handleSubmit}>
             <div>
                 <label htmlFor="username">
-                    Username
+                {formik.touched.userName && formik.errors.userName ? '*' : null}Username
                 </label>
                 <input
                     id="username"
-                    onChange={handleChangeUsername}
-                    value={userName}
+                    name="userName"
+                    onChange={formik.handleChange}
+                    value={formik.values.userName}
                 />
             </div>
-
             <div>
                 <label htmlFor="password">
-                    Password
+                {formik.touched.password && formik.errors.password ? '*' : null}Password
                 </label>
                 <input
                     id="password"
-                    onChange={handleChangePassword}
-                    value={password}
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    name="password"
                     type="password"
                 />
             </div>
-            <button onClick={(e)=>{
-                e.preventDefault()
-                handleFormSubmit(userName, password)
-                }}>
+            <button type="submit">
                 {labelButton}
             </button>
         </form>
