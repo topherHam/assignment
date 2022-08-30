@@ -3,33 +3,37 @@ import { useEffect } from "react"
 //import { AuthContext } from "../../../../App"
 import { AuthForm } from "../../../../common/authForm"
 import { Message } from "../../../../common/message"
-import { useMakeLogin } from "../../../../hooks/useMakeLogin"
+import { useAuth } from "../../../../hooks/useAuth"
 //import { makeLogin } from "./api"
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [message, setMessage] = useState()
-    const { token, isError, isLoading, trigger, lookToken, errorMessage } = useMakeLogin()
+    const { token,
+        login,
+        lookToken,
+        error,
+    // isError, isLoading, trigger, , errorMessage*/
+ } = useAuth()
     const navigate = useNavigate();    
 
     useEffect(()=>{
-        if(!(isError || isLoading) && token){
-            console.log(token)
+        if(token){
             localStorage.setItem("token", token)
             navigate('/home')
         }
-        else if(!token){
-            lookToken()
+        else if(!token && lookToken()){
+            console.log(54)
         } 
-    },[token, isError, isLoading, lookToken, navigate])
+    },[token, navigate])
     useEffect(()=>{
-        if(errorMessage){
-            setMessage({text: errorMessage, type:'error'})
+        if(error){
+            setMessage({text: error, type:'error'})
         }
-    }, [errorMessage])
+    }, [error])
 
     const handleLogin = async (userName, password) => {
-        trigger({userName, password})
+        login({userName, password})
         /*try {
             const response = await makeLogin({ userName, password })
             if (response.status === 200) {

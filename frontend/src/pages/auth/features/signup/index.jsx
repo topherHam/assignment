@@ -2,28 +2,27 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthForm } from "../../../../common/authForm"
 import { Message } from "../../../../common/message"
-import { useMakeSignup } from "../../../../hooks/useMakeSignup"
-import { makeSignup } from "./api"
+import { useSignup } from "../../../../hooks"
 
 const Signup = ({changeAuthOption}) => {
     const [message, setMessage] = useState()
-    const {data, isError, isLoading, trigger, errorMessage } = useMakeSignup()
+    const {newAccount, signup,error } = useSignup()
 
     useEffect(()=>{
-        if(!(isError || isLoading) && data){
+        if(newAccount){
             changeAuthOption()
         }
-    },[data, isError, isLoading, changeAuthOption])
+    },[newAccount, changeAuthOption])
 
     useEffect(()=>{
-        console.log(errorMessage)
-        if(errorMessage){
-            setMessage({text: errorMessage, type:'error'})
+        console.log(error)
+        if(error){
+            setMessage({text: error, type:'error'})
         }
-    }, [errorMessage])
+    }, [error])
     
     const handleSignup = async (userName, password) => {
-        trigger({ userName, password })
+        signup({ userName, password })
         /*try {
             const response = await makeSignup({ userName, password })
             console.log(response.status)
@@ -35,7 +34,7 @@ const Signup = ({changeAuthOption}) => {
             }
         } catch (error) {
             console.log(error)
-            setMessage({text: error.response.data.message, type:'error'})
+            setMessage({text: error.response.newAccount.message, type:'error'})
         }*/
     }
 

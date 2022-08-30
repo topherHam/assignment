@@ -7,7 +7,8 @@ import Auth from './pages/auth';
 import AuthProvider from './providers/Auth';
 
 import { Provider } from 'react-redux'
-import {store} from './redux/store';
+import store from './redux/store';
+
 
 
 export const AuthContext = React.createContext(null);

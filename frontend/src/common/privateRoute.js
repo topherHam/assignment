@@ -1,11 +1,11 @@
 import {
   Navigate,
 } from 'react-router-dom';
-import { useAuth } from '../hooks/authHook';
-import { useMakeLogin } from '../hooks/useMakeLogin';
+
+import { useAuth } from '../hooks/useAuth';
 
 const PrivateRoute = ({ children }) => {
-  const { token } = useMakeLogin();
+  const { token } = useAuth();
   console.log(token)
   if (!token) {
     return <Navigate to="/authtentication" replace />;
