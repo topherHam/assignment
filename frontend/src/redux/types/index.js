@@ -12,6 +12,12 @@ import {
     RESET_SIGNUP_ERROR
 } from './signUpTypes'
 
+import {
+    GET_MY_RECIPES,
+    GET_MY_RECIPES_ERROR,
+    ADD_RECIPE,
+    ADD_RECIPE_ERROR
+} from './recipeTypes'
 export {
     MAKE_LOGIN,
     MAKE_LOGIN_ERROR,
@@ -21,5 +27,9 @@ export {
     RESET_AUTH_ERROR,
     MAKE_SIGNUP,
     MAKE_SIGNUP_ERROR,
-    RESET_SIGNUP_ERROR
+    RESET_SIGNUP_ERROR,
+    GET_MY_RECIPES,
+    GET_MY_RECIPES_ERROR,
+    ADD_RECIPE,
+    ADD_RECIPE_ERROR
 }

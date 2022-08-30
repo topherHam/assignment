@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   const { token } = useAuth();
   console.log(token)
   if (!token) {
-    return <Navigate to="/authtentication" replace />;
+    return <Navigate to="/auth" replace />;
   }
   return children;
 };

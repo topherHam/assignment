@@ -20,7 +20,7 @@ const App = () => {
         <Provider store={store}>
           <Routes>
             <Route index element={<Auth />} />
-            <Route path="authtentication" element={<Auth />} />
+            <Route path="auth" element={<Auth />} />
             <Route
               path="home"
               element={
