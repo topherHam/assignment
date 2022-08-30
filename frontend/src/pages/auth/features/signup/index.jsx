@@ -1,15 +1,30 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthForm } from "../../../../common/authForm"
 import { Message } from "../../../../common/message"
+import { useMakeSignup } from "../../../../hooks/useMakeSignup"
 import { makeSignup } from "./api"
 
 const Signup = ({changeAuthOption}) => {
     const [message, setMessage] = useState()
-    const navigate = useNavigate();
+    const {data, isError, isLoading, trigger, errorMessage } = useMakeSignup()
+
+    useEffect(()=>{
+        if(!(isError || isLoading) && data){
+            changeAuthOption()
+        }
+    },[data, isError, isLoading, changeAuthOption])
+
+    useEffect(()=>{
+        console.log(errorMessage)
+        if(errorMessage){
+            setMessage({text: errorMessage, type:'error'})
+        }
+    }, [errorMessage])
     
     const handleSignup = async (userName, password) => {
-        try {
+        trigger({ userName, password })
+        /*try {
             const response = await makeSignup({ userName, password })
             console.log(response.status)
             if (response.status === 201) {
@@ -21,7 +36,7 @@ const Signup = ({changeAuthOption}) => {
         } catch (error) {
             console.log(error)
             setMessage({text: error.response.data.message, type:'error'})
-        }
+        }*/
     }
 
     return (
