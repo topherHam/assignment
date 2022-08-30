@@ -1,8 +1,8 @@
-import React, { useState } from "react"
-import { useEffect } from "react"
-import { AuthForm } from "../../../common/authForm"
-import { Message } from "../../../common/message"
-import { useAuth } from "../../../hooks"
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { AuthForm } from '../../../common/authForm'
+import { Message } from '../../../common/message'
+import { useAuth } from '../../../hooks'
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
 
     useEffect(() => {
         if (token) {
-            localStorage.setItem("token", token)
+            localStorage.setItem('token', token)
             navigate('/home')
         }
         else if (!token && lookToken())  {
@@ -31,7 +31,7 @@ const Login = () => {
             <section>
                 <AuthForm
                     handleFormSubmit={handleLogin}
-                    labelButton="Login"
+                    labelButton='Login'
                 />
                 {message !== null && <Message message={message} callback={() => setMessage(null)} />}
             </section>
