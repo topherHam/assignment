@@ -14,7 +14,6 @@ const Signup = ({ changeAuthOption }) => {
     }, [newAccount, changeAuthOption])
 
     useEffect(() => {
-        console.log(error)
         if (error) {
             setMessage({ text: error, type: 'error' })
         }
