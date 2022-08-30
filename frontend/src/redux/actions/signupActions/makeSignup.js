@@ -1,9 +1,9 @@
-import axios from "axios";
-import store from "../../store";
+import axios from 'axios'
+import store from '../../store'
 import {
     MAKE_SIGNUP,
     MAKE_SIGNUP_ERROR
-} from "../../types";
+} from '../../types'
 
 const makeSignup = async (newUser) => {
     try {
@@ -14,7 +14,7 @@ const makeSignup = async (newUser) => {
                 newAccount: response.data,
                 error: ''
             }
-        });
+        })
     } catch (e) {
         store.dispatch({
             type: MAKE_SIGNUP_ERROR,
@@ -22,7 +22,7 @@ const makeSignup = async (newUser) => {
                 newAccount: '',
                 error: e.response.data.message
             }
-        });
+        })
     }
-};
+}
 export default makeSignup

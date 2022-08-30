@@ -1,10 +1,9 @@
-
-import axios from "axios";
-import store from "../../store";
+import axios from 'axios'
+import store from '../../store'
 import {
     GET_MY_RECIPES,
     GET_MY_RECIPES_ERROR
-} from "../../types";
+} from '../../types'
 
 const getMyRecipes = async (token) => {
     try {
@@ -22,7 +21,7 @@ const getMyRecipes = async (token) => {
                 error: '',
                 statusRequest: 'finished'
             }
-        });
+        })
     } catch (e) {
         store.dispatch({
             type: GET_MY_RECIPES_ERROR,
@@ -31,7 +30,7 @@ const getMyRecipes = async (token) => {
                 error: e.response.data.message,
                 statusRequest: 'finished'
             }
-        });
+        })
     }
-};
+}
 export default getMyRecipes

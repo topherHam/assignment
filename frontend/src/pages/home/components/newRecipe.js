@@ -1,14 +1,15 @@
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
-import { useAddRecipe } from '../../../hooks';
-import { Message } from '../../../common/message';
-import { useCallback, useEffect, useState } from 'react';
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+import { useAddRecipe } from '../../../hooks'
+import { Message } from '../../../common/message'
+import { useCallback, useEffect, useState } from 'react'
 
 export const AddRecipeForm = () => {
 
-    const { newRecipe, error, statusRequest, add, reset } = useAddRecipe()
+    const { newRecipe, error, add } = useAddRecipe()
     const [message, setMessage] = useState()
     const [showForm, setShowForm] = useState(false)
+
     const formik = useFormik({
         initialValues: {
             title: '',
@@ -20,16 +21,13 @@ export const AddRecipeForm = () => {
             description: Yup.string().required(),
             timeCooking: Yup.string().required(),
         }),
-        onSubmit: () => {
-            console.log(formik.values)
-            add(formik.values)
-        },
-    });
+        onSubmit: () => add(formik.values),
+    })
+
     const resetForm = useCallback(() => {
         formik.resetForm()
         setShowForm(false)
     }, [formik, setShowForm])
-
 
     useEffect(() => {
         if (error) {
@@ -39,8 +37,6 @@ export const AddRecipeForm = () => {
             resetForm()
         }
     }, [error, newRecipe, resetForm])
-
-
 
     return (
         <>
@@ -69,7 +65,6 @@ export const AddRecipeForm = () => {
                             name="timeCooking"
                             onChange={formik.handleChange}
                             value={formik.values.timeCooking}
-
                         />
                     </div>
                 </div>

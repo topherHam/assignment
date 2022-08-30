@@ -3,8 +3,8 @@ import {
     ADD_RECIPE_ERROR,
     GET_MY_RECIPES,
     GET_MY_RECIPES_ERROR,
+    UPDATE_RECIPES_LIST
 } from '../types'
-import { UPDATE_RECIPES_LIST } from '../types/recipeTypes'
 
 const initialState = {
     data: '',

@@ -1,10 +1,9 @@
-
-import axios from "axios";
-import store from "../../store";
+import axios from 'axios'
+import store from '../../store'
 import {
     MAKE_LOGIN,
     MAKE_LOGIN_ERROR
-} from "../../types";
+} from '../../types'
 
 const makeLogin = async (userCredentials) => {
     try {
@@ -25,5 +24,5 @@ const makeLogin = async (userCredentials) => {
             }
         });
     }
-};
+}
 export default makeLogin

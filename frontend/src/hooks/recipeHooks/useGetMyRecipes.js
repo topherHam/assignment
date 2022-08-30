@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { getMyRecipes } from '../redux/actions/recipesActions'
+import { getMyRecipes } from '../../redux/actions/recipesActions';
 
-
-export function useGetMyRecipes() {
+const useGetMyRecipes = () => {
 
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token)
@@ -23,6 +22,7 @@ export function useGetMyRecipes() {
     if (token) getMyRecipes(token)
   }, [token])
 
-  // return the import data for the caller of the hook to use
   return { data, error, statusRequest }
 }
+
+export default useGetMyRecipes

@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { addRecipe } from '../redux/actions/recipesActions'
-import updateRecipesList from '../redux/actions/recipesActions/updateRecipesList';
+import { addRecipe, updateRecipesList } from '../../redux/actions/recipesActions';
 
 const useAddRecipe = () => {
     const navigate = useNavigate();

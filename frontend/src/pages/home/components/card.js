@@ -1,5 +1,4 @@
 export const Card = ({recipe}) => {
-    console.log(recipe)
     return (
         <div>
             <div>

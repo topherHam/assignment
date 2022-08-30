@@ -1,5 +1,5 @@
-import { RESET_AUTH_ERROR } from "../../types";
-import store from "../../store";
+import { RESET_AUTH_ERROR } from '../../types'
+import store from '../../store'
 
 const resetError = () => {
     store.dispatch({

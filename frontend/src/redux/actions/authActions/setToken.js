@@ -1,7 +1,7 @@
 
-import store from "../../store";
+import store from '../../store'
 import { 
-    SET_TOKEN } from "../../types";
+    SET_TOKEN } from '../../types'
 
 const setToken = (token) => {
     store.dispatch({

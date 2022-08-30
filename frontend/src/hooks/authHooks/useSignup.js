@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
-import { makeSignup, resetSignupError } from '../redux/actions/signupActions'
+import { makeSignup, resetSignupError } from '../../redux/actions/signupActions'
 
-export function useSignup() {
+const useSignup = () => {
   const newAccount = useSelector((state) => state.signup.newAccount)
   const error = useSelector((state) => state.signup.error)
 
@@ -12,7 +12,7 @@ export function useSignup() {
     }
   }
 
-
-  // return the import data for the caller of the hook to use
   return { newAccount, signup, error }
 }
+
+export default useSignup

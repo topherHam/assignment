@@ -1,7 +1,11 @@
-import useAddRecipe from "./useAddRecipe";
-import { useSignup } from "./useSignup";
+import useAuth from "./authHooks/useAuth"
+import useSignup from "./authHooks/useSignup"
+import useAddRecipe from "./recipeHooks/useAddRecipe"
+import useGetMyRecipes from "./recipeHooks/useGetMyRecipes"
 
-export{
+export {
+    useAuth,
     useSignup,
-    useAddRecipe
+    useAddRecipe,
+    useGetMyRecipes,
 }

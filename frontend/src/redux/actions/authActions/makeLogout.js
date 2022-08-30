@@ -1,10 +1,9 @@
-
-import axios from "axios";
-import store from "../../store";
+import axios from 'axios'
+import store from '../../store'
 import {
     MAKE_LOGOUT,
     MAKE_LOGOUT_ERROR,
-} from "../../types";
+} from '../../types'
 
 const makeLogout = async (token) => {
     try {
@@ -16,15 +15,16 @@ const makeLogout = async (token) => {
                 error: ''
             }
         });
+        localStorage.clear()
     } catch (e) {
+        localStorage.clear()
         store.dispatch({
             type: MAKE_LOGOUT_ERROR,
             payload: {
                 token: '',
                 error: e.response.data.message
             }
-        });
-    }
-    localStorage.clear()
+        })
+    }   
 }
 export default makeLogout

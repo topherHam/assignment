@@ -1,5 +1,5 @@
-import { RESET_SIGNUP_ERROR } from "../../types";
-import store from "../../store";
+import { RESET_SIGNUP_ERROR } from '../../types'
+import store from '../../store'
 
 const resetError = () => {
     store.dispatch({
@@ -8,6 +8,6 @@ const resetError = () => {
             token: '',
             error: ''
         }
-    });
+    })
 }
 export default resetError
