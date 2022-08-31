@@ -1,0 +1,6 @@
+export const MAKE_LOGIN = 'MAKE_LOGIN'
+export const MAKE_LOGIN_ERROR = 'MAKE_LOGIN_ERROR'
+export const MAKE_LOGOUT =  'MAKE_LOGOUT'
+export const MAKE_LOGOUT_ERROR = 'MAKE_LOGOUT_ERROR'
+export const SET_TOKEN = 'SET_TOKEN'
+export const RESET_AUTH_ERROR = 'RESET_ERROR'
