@@ -7,11 +7,11 @@ const Home = () => {
 
     return (
         <>
+            <a href='#' onClick={() => logout()}>Logout</a>
             <h2>Welcome to Recipes</h2>
             <div>
-                <a href='#' onClick={() => logout()}>Logout</a>
-                <AddRecipeForm/>
-                <CardContainer/>
+                <AddRecipeForm />
+                <CardContainer />
             </div>
         </>
     )

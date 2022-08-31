@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { getMyRecipes } from '../../redux/actions/recipesActions';
+import { getMyRecipes, updatePage } from '../../redux/actions/recipesActions';
 
 const useGetMyRecipes = () => {
 
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token)
   const data = useSelector((state) => state.recipes.data)
+  const page = useSelector((state) => state.recipes.page)
   const error = useSelector((state) => state.recipes.error)
   const statusRequest = useSelector((state) => state.recipes.statusRequest)
 
@@ -19,10 +20,12 @@ const useGetMyRecipes = () => {
   }, [error, navigate])
 
   useEffect(() => {
-    if (token) getMyRecipes(token)
-  }, [token])
+    if (token) getMyRecipes(token, page)
+  }, [token, page])
+  const nextPage = ()=> updatePage(page+1)
+  const backPage = ()=> updatePage(page-1)
 
-  return { data, error, statusRequest }
+  return { data, error, statusRequest, nextPage, backPage }
 }
 
 export default useGetMyRecipes

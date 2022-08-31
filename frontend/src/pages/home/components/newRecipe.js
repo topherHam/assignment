@@ -3,7 +3,15 @@ import { useFormik } from 'formik'
 import { useAddRecipe } from '../../../hooks'
 import { Message } from '../../../common/message'
 import { useCallback, useEffect, useState } from 'react'
-
+/***
+ * ---!<input
+                            id="timeCooking"
+                            name="timeCooking"
+                            onChange={formik.handleChange}
+                            value={formik.values.timeCooking}
+                            type="time" name="appt-time" step="2"
+                        />!--->
+ */
 export const AddRecipeForm = () => {
 
     const { newRecipe, error, add } = useAddRecipe()
@@ -14,14 +22,19 @@ export const AddRecipeForm = () => {
         initialValues: {
             title: '',
             description: '',
-            timeCooking: 36000
+            hours:'',
+            minutes:''
         },
         validationSchema: Yup.object().shape({
             title: Yup.string().required(),
             description: Yup.string().required(),
-            timeCooking: Yup.string().required(),
+            hours: Yup.number().min(0).max(24).required(),
+            minutes: Yup.number().min(1).max(60).required(),
         }),
-        onSubmit: () => add(formik.values),
+        onSubmit: () => {
+            let timeCooking = formik.values.hours * 3600 + formik.values.minutes * 60
+            add({...formik.values, timeCooking})
+        },
     })
 
     const resetForm = useCallback(() => {
@@ -33,16 +46,19 @@ export const AddRecipeForm = () => {
         if (error) {
             setMessage({ text: error, type: 'error' })
         }
-        else if (newRecipe) {
+    }, [error])
+    useEffect(() => {
+        if (newRecipe) {
             resetForm()
         }
-    }, [error, newRecipe, resetForm])
+    }, [newRecipe, resetForm])
 
     return (
-        <>
-            {!showForm && <button onClick={() => setShowForm(true)}>+</button>}
-            {showForm && <form onSubmit={formik.handleSubmit}>
+        <div className={showForm ? 'modal' : ''}>
+            {!showForm && <button onClick={() => setShowForm(true)}>add new recipe</button>}
+            {showForm && <form className="formAdd" onSubmit={formik.handleSubmit}>
                 <div>
+                    <h4>Add new recipe</h4>
                     <label htmlFor="title">
                         {formik.touched.title && formik.errors.title ? '*' : null}title
                     </label>
@@ -57,15 +73,17 @@ export const AddRecipeForm = () => {
                 </div>
                 <div>
                     <label htmlFor="timeCooking">
-                        {formik.touched.timeCooking && formik.errors.timeCooking ? '*' : null}timeCooking
+                        {/*formik.touched.timeCooking && formik.errors.timeCooking ? '*' : null*/}timeCooking
                     </label>
                     <div>
-                        <input
-                            id="timeCooking"
-                            name="timeCooking"
-                            onChange={formik.handleChange}
-                            value={formik.values.timeCooking}
-                        />
+                        <label htmlFor="hours">
+                            {formik.touched.hours && formik.errors.hours ? '*' : null}hours
+                        </label>
+                        <input id="hours" placeholder='hours' type="number" min={0} max={24} value={formik.values.hours} onChange={formik.handleChange} />
+                        <label htmlFor="minutes">
+                            {formik.touched.minutes && formik.errors.minutes ? '*' : null}minutes
+                        </label>
+                        <input id="minutes" placeholder='minutes' type="number" min={0} max={60} value={formik.values.minutes} onChange={formik.handleChange}/>
                     </div>
                 </div>
                 <div>
@@ -85,11 +103,11 @@ export const AddRecipeForm = () => {
                 <button type="submit">
                     add
                 </button>
-                <button onClick={() => resetForm()}>
+                <button type="button" onClick={() => resetForm()}>
                     cancel
                 </button>
                 {message !== null && <Message message={message} callback={() => setMessage(null)} />}
             </form>}
-        </>
+        </div>
     )
 }

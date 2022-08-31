@@ -1,18 +1,22 @@
+import useFormatedSeconds from "../../../hooks/useFormatedDate"
+
 export const Card = ({recipe}) => {
+    const value = useFormatedSeconds(recipe.timeCooking)
     return (
-        <div>
+        <section className="card">
             <div>
-                <h4><b>Title: </b>{recipe.title}</h4>
+                <h4>Title: {recipe.title}</h4>
+                
             </div>
             <div>
-                <small><b>Time Cooking</b>{recipe.timeCooking}</small>
+                <small>Time Cooking: {value}</small>
             </div>
             <div>
                 <label>Description</label>
-                <p>
+                <p id="descriotionId">
                     {recipe.description}
                 </p>
             </div>
-        </div>
+        </section>
     )
 }

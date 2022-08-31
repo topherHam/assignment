@@ -5,20 +5,35 @@ import { Card } from './card'
 
 const CardContainer = () => {
     const [message, setMessage] = useState()
-    const { data, error, statusRequest } = useGetMyRecipes()
+    const { data, error, statusRequest,nextPage, backPage } = useGetMyRecipes()
 
     useEffect(() => {
         if (error) setMessage({ text: error, type: 'error' })
     }, [error])
 
+    const renderPagination = ()=>{
+        if(data.total > 0 && data.recipes.length === 0){
+            return<button onClick={backPage}>back</button>
+        }
+        if(data.total > 10){
+            return <><button onClick={backPage}>back</button> <button onClick={nextPage}>next</button></>
+        }
+        if(data.total < 10){
+            return <button onClick={nextPage}>next</button>
+        }
+    }
     return (
-        <div>
-            {message !== null && <Message message={message} callback={() => setMessage(null)} />}
-            {data && data.recipes.map((recipe, index) =>
-                <Card key={index} recipe={recipe}></Card>
-            )}
-            {statusRequest === 'finished' && data.total === 0 ? 'no data' : ''}
-        </div>
+        <>
+            <h3>Your recipes</h3>
+            <div className='cardContainer'>
+                {message !== null && <Message message={message} callback={() => setMessage(null)} />}
+                {data && data.recipes.map((recipe, index) =>
+                    <Card key={index} recipe={recipe}></Card>
+                )}
+                {statusRequest === 'finished' && data.total === 0 ? 'no data' : ''}
+            </div>
+            {data.total  > 0 && renderPagination() }
+        </>
     )
 }
 

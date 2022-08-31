@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { makeLogin, makeLogout, resetAuthError, setToken } from '../../redux/actions/authActions'
+import resetStore from '../../redux/actions/rootActions/resetStore'
 
 const useAuth = () => {
   const token = useSelector((state) => state.auth.token)
   const error = useSelector((state) => state.auth.error)
-
+  const navigate = useNavigate();
   const login = (userCredentials) => {
     if (userCredentials !== null) {
       resetAuthError()
@@ -17,6 +19,11 @@ const useAuth = () => {
       makeLogout(token)
     }
   }
+  const handleAuth = ()=>{
+    localStorage.clear()
+    resetStore()
+    navigate('/auth')
+  }
 
   const lookToken = () => {
     const token = localStorage.getItem("token");
@@ -27,6 +34,6 @@ const useAuth = () => {
     return false
   }
 
-  return { token, login, lookToken, logout, error }
+  return { token, login, lookToken, logout, error,handleAuth }
 }
 export default useAuth

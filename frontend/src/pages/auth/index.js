@@ -9,11 +9,12 @@ const Auth = () => {
 
 	return (
 		<>
-			<a href="#">
-				<small onClick={()=>handleSwitch()}>
+			<small onClick={() => handleSwitch()}>
+			<a href="#" id="switch">
+
 				{option === 1 ? `Not an account  yet? Let's create a new one!` : 'Back to login'}
-				</small></a>
-			{option === 1 ? <Login/> : <SignUp changeAuthOption={()=>handleSwitch()} />}
+			</a></small>
+			{ option === 1 ? <Login /> : <SignUp changeAuthOption={() => handleSwitch()} /> }
 		</>
 	)
 }

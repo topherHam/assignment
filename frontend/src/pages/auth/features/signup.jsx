@@ -22,7 +22,7 @@ const Signup = ({ changeAuthOption }) => {
     const handleSignup = async (userName, password) => signup({ userName, password })
 
     return (
-        <>
+        <div className='signUp'>
             <h2>Create an account quickly</h2>
             <section>
                 <AuthForm
@@ -31,7 +31,7 @@ const Signup = ({ changeAuthOption }) => {
                 />
                 {message !== null && <Message message={message} callback={() => setMessage(null)} />}
             </section>
-        </>
+        </div>
     )
 }
 

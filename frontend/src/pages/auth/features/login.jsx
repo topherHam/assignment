@@ -26,8 +26,8 @@ const Login = () => {
     const handleLogin = async (userName, password) => login({ userName, password })
 
     return (
-        <>
-            <h2>Welcome</h2>
+        <div alt="login">
+            <h2>Welcome to recipes</h2>
             <section>
                 <AuthForm
                     handleFormSubmit={handleLogin}
@@ -35,7 +35,7 @@ const Login = () => {
                 />
                 {message !== null && <Message message={message} callback={() => setMessage(null)} />}
             </section>
-        </>
+        </div>
     )
 }
 
