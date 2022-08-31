@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_URL } from '../../../config/constants'
 import store from '../../store'
 import {
     MAKE_LOGOUT,
@@ -7,7 +8,7 @@ import {
 
 const makeLogout = async (token) => {
     try {
-        await axios.put(`http://127.0.0.1:3000/logout`, {}, { headers: { 'x-access-token': token } })
+        await axios.put(`${API_URL}/logout`, {}, { headers: { 'x-access-token': token } })
         store.dispatch({
             type: MAKE_LOGOUT,
             payload: {

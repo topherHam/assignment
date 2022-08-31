@@ -5,38 +5,112 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #858585;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  padding: 35px 0px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.cardContainer{
+
+.cardContainer {
   display: flex;
   flex-wrap: wrap;
 }
-.card{
-  background: #e7e7e7;
-    width: 250px;
-    margin: 10px;
-    border-radius: 5px;
-    padding: 5px;
+
+.card {
+  background: #f3f3f3;
+  width: 250px;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 5px;
 }
-.formAdd{
+
+.formAdd {
   position: absolute;
-    background: #fdfdfd;
-    top: 25%;
-    left: 35%;
-    padding: 20px;
-    width: 36%;
-    border: 1px solid #b5b5b5;
-    border-radius: 5px;
+  background: #fdfdfd;
+  top: 25%;
+  left: 45%;
+  padding: 20px;
+  width: 180px;
+  border: 1px solid #b5b5b5;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.modal{
+
+.input-auth {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.time-cooking{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.input-time {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column
+}
+
+.modal {
   background: #00000061;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+}
+
+button {
+  background: #4b8df5;
+  border: 1px solid white;
+  text-transform: uppercase;
+  color: white;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+input {
+  background: #ffffff;
+  border: 1px solid #c3c3c3;
+  color: #666666;
+  padding: 5px;
+  outline: none;
+  margin: 5px 0px;
+  border-radius: 2px;
+}
+textarea {
+  resize: none;
+}
+.data-error{
+  color: #b3a76a;
+  background: #fff9d7;
+  display: flex;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 2px;
+  margin: 8px;
+  justify-content: center;
+  text-transform: uppercase;
+}
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  /* background: red; */
+  border-bottom: 1px solid #ddc8c8;
+  margin: 11px;
+  border-top: 1px solid #ddc8c8;
+}
+.smallButton {
+  cursor: pointer;
 }

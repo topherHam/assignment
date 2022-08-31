@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_URL } from '../../../config/constants'
 import store from '../../store'
 import {
     MAKE_SIGNUP,
@@ -7,7 +8,7 @@ import {
 
 const makeSignup = async (newUser) => {
     try {
-        const response = await axios.post(`http://127.0.0.1:3000/signup`, newUser)
+        const response = await axios.post(`${API_URL}/signup`, newUser)
         store.dispatch({
             type: MAKE_SIGNUP,
             payload: {

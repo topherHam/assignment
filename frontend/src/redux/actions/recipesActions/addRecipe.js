@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_URL } from '../../../config/constants'
 import store from '../../store'
 import {
     ADD_RECIPE,
@@ -7,7 +8,7 @@ import {
 
 const addRecipe = async (data, token) => {
     try {
-        const response = await axios.post(`http://127.0.0.1:3000/recipe`, data, {
+        const response = await axios.post(`${API_URL}/recipe`, data, {
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': token

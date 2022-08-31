@@ -22,8 +22,8 @@ export const AddRecipeForm = () => {
         initialValues: {
             title: '',
             description: '',
-            hours:'',
-            minutes:''
+            hours: '',
+            minutes: ''
         },
         validationSchema: Yup.object().shape({
             title: Yup.string().required(),
@@ -33,7 +33,7 @@ export const AddRecipeForm = () => {
         }),
         onSubmit: () => {
             let timeCooking = formik.values.hours * 3600 + formik.values.minutes * 60
-            add({...formik.values, timeCooking})
+            add({ ...formik.values, timeCooking })
         },
     })
 
@@ -72,18 +72,23 @@ export const AddRecipeForm = () => {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="timeCooking">
-                        {/*formik.touched.timeCooking && formik.errors.timeCooking ? '*' : null*/}timeCooking
-                    </label>
-                    <div>
-                        <label htmlFor="hours">
-                            {formik.touched.hours && formik.errors.hours ? '*' : null}hours
-                        </label>
-                        <input id="hours" placeholder='hours' type="number" min={0} max={24} value={formik.values.hours} onChange={formik.handleChange} />
-                        <label htmlFor="minutes">
-                            {formik.touched.minutes && formik.errors.minutes ? '*' : null}minutes
-                        </label>
-                        <input id="minutes" placeholder='minutes' type="number" min={0} max={60} value={formik.values.minutes} onChange={formik.handleChange}/>
+                    <h4 htmlFor="timeCooking">
+                        {/*formik.touched.timeCooking && formik.errors.timeCooking ? '*' : null*/}Time Cooking
+                    </h4>
+                    <div className='time-cooking'>
+                        <div className='input-time'>
+                            <label htmlFor="hours">
+                                {formik.touched.hours && formik.errors.hours ? '*' : null}hours
+                            </label>
+                            <input id="hours" placeholder='00' type="number" min={0} max={24} value={formik.values.hours} onChange={formik.handleChange} />
+                        </div>
+                        :
+                        <div className='input-time'>
+                            <label htmlFor="minutes">
+                                {formik.touched.minutes && formik.errors.minutes ? '*' : null}minutes
+                            </label>
+                            <input id="minutes" placeholder='00' type="number" min={0} max={60} value={formik.values.minutes} onChange={formik.handleChange} />
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -91,12 +96,13 @@ export const AddRecipeForm = () => {
                         {formik.touched.description && formik.errors.description ? '*' : null}description
                     </label>
                     <div>
-                        <input
+                        <textarea
                             id="description"
                             onChange={formik.handleChange}
                             value={formik.values.description}
                             name="description"
                             type="textarea"
+                            rows={3}
                         />
                     </div>
                 </div>

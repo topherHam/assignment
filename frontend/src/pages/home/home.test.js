@@ -14,7 +14,7 @@ test('user can see home', async () => {
 });
 test('user can open add recipe form', async () => {
     render(<Router><Provider store={store}><Home /></Provider></Router>);
-    const addBtn = screen.getByText('+');
+    const addBtn = screen.getByRole('button',{name: /add new recipe/i});
     const user = userEvent.setup()
     expect(addBtn).toBeInTheDocument();
     await user.click(addBtn)

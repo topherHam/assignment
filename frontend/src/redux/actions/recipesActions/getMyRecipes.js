@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_URL } from '../../../config/constants'
 import store from '../../store'
 import {
     GET_MY_RECIPES,
@@ -7,7 +8,7 @@ import {
 
 const getMyRecipes = async (token, page) => {
     try {
-        const response = await axios.get(`http://127.0.0.1:3000/user/recipes?page=${page}`, {
+        const response = await axios.get(`${API_URL}/user/recipes?page=${page}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': token

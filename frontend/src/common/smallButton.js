@@ -1,0 +1,1 @@
+export const SmallButton = ({text, handler}) => <small className="smallButton" onClick={handler}>{text}</small>
