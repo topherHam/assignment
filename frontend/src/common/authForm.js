@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { passCustomMsg, passRegex } from '../config/constants';
 
 const loginSchema = Yup.object().shape({
     userName: Yup.string().required(),
@@ -7,7 +8,7 @@ const loginSchema = Yup.object().shape({
 })
 const signupSchema = Yup.object().shape({
     userName: Yup.string().required(),
-    password: Yup.string().required().matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,'Password should have a lower and upercase letter, minumn 6 characters and numbers'),
+    password: Yup.string().required().matches(passRegex,passCustomMsg),
 })
 export const AuthForm = ({ handleFormSubmit, labelButton }) => {
 

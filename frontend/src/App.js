@@ -8,8 +8,6 @@ import Auth from './pages/auth'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
-
-
 export const AuthContext = React.createContext(null)
 
 const App = () => {
