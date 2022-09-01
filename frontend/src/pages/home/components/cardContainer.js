@@ -30,7 +30,7 @@ const CardContainer = () => {
                 {data && data.recipes.map((recipe, index) =>
                     <Card key={index} recipe={recipe}></Card>
                 )}
-                {statusRequest === 'finished' && data.recipes.length === 0 ? <div className='data-error'>No recipes</div> : ''}
+                {statusRequest === 'finished' && !error && data.recipes.length === 0 ? <div className='data-error'>No recipes</div> : ''}
             </div>
             {data.total  > 0 && renderPagination() }
         </>

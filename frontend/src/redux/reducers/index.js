@@ -11,8 +11,8 @@ const appReducer = combineReducers({
 })
 
 const rootReducer = (state, action) => {
-  if (action.type === 'RESET_STORE') {
-    return appReducer({}, action)
+  if (action.type === 'RESET_STORE' || action.type === 'MAKE_LOGOUT') {
+    return appReducer(undefined, action)
   }
 
   return appReducer(state, action)
